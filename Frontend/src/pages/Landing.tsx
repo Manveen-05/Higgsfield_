@@ -279,7 +279,7 @@ export function LandingPage() {
           height={250} 
           cardWidth={330} 
           fadeColor="#09090b" 
-          onVideoClick={(url) => {
+          onVideoClick={(url: string) => {
             const matched = VIDEOS.find(v => v.url === url);
             if (matched) {
               openModal(matched.url, matched.title, matched.prompt);
