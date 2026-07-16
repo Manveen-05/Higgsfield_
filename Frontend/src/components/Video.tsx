@@ -6,6 +6,7 @@ interface GrainyVideoCarouselProps {
   cardWidth?: number;
   speed?: number;
   fadeColor?: string;
+  onVideoClick?: (url: string) => void;
 }
 
 export function GrainyVideoCarousel({
@@ -14,6 +15,7 @@ export function GrainyVideoCarousel({
   cardWidth = 200,
   speed = 0.6,
   fadeColor = "#f3f4f6",
+  onVideoClick,
 }: GrainyVideoCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<number>(0);
@@ -125,6 +127,7 @@ export function GrainyVideoCarousel({
         {loopedVideos.map((v, i) => (
           <div
             key={i}
+            onClick={() => onVideoClick?.(v.url)}
             style={{
               flexShrink: 0,
               width: `${cardWidth}px`,
@@ -132,6 +135,7 @@ export function GrainyVideoCarousel({
               borderRadius: "16px",
               overflow: "hidden",
               boxShadow: "0 8px 32px rgba(0,0,0,0.20)",
+              cursor: "pointer",
             }}
           >
             <video
@@ -153,3 +157,4 @@ export function GrainyVideoCarousel({
     </div>
   );
 }
+
